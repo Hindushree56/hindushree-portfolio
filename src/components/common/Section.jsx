@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { useScrollNavigation } from '../../context/ScrollContext';
+import { useScrollNavigation } from '../../hooks/useScrollNavigation';
 
 export const Section = forwardRef(function Section({ id, className = '', children, ...props }, ref) {
   const { registerSection } = useScrollNavigation();

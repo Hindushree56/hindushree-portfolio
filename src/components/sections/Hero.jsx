@@ -1,44 +1,32 @@
 import { motion } from 'framer-motion';
-import { HiArrowDown, HiArrowDownTray } from 'react-icons/hi2';
-import { Container } from '../common/Container';
+import { HiArrowDownTray, HiArrowRight } from 'react-icons/hi2';
+import profileImage from '../../assets/images/Picture.jpg';
 import { profile, socialLinks } from '../../data/portfolio';
+import { useScrollNavigation } from '../../hooks/useScrollNavigation';
+import { Container } from '../common/Container';
 import { Section } from '../common/Section';
-import { useScrollNavigation } from '../../context/ScrollContext';
 
-const rise = { hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0 } };
+const rise = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+const stats = [{ value: '4', label: 'Projects' }, { value: '1', label: 'Internship' }, { value: '1', label: 'IEEE paper' }, { value: '5', label: 'Skill areas' }];
 
 export function Hero() {
   const { scrollToSection } = useScrollNavigation();
-  return (
-    <Section className="hero" id="home" aria-labelledby="hero-title">
-      <div className="hero-orb hero-orb-one" />
-      <div className="hero-orb hero-orb-two" />
-      <Container className="hero-grid">
-        <motion.div className="hero-copy" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
-          <motion.p className="eyebrow" variants={rise}><span /> {profile.availability}</motion.p>
-          <motion.h1 id="hero-title" variants={rise}>Crafting thoughtful <em>digital</em> experiences.</motion.h1>
-          <motion.p className="hero-intro" variants={rise}>
-            I’m <strong>{profile.name}</strong>, a {profile.role} focused on building responsive web applications and meaningful software experiences.
-          </motion.p>
-          <motion.div className="hero-actions" variants={rise}>
-            <button className="button button-primary" type="button" onClick={() => scrollToSection('projects')}>Explore my work <HiArrowDown /></button>
-            <a className="button button-secondary" href={profile.resumeUrl} download><HiArrowDownTray /> Resume</a>
-          </motion.div>
-          <motion.div className="hero-socials" variants={rise}>
-            {socialLinks.map(({ label, icon: Icon, href }) => <a href={href} target="_blank" rel="noreferrer" key={label} aria-label={`${label} (opens in a new tab)`}><Icon /></a>)}
-            <a className="email-link" href={`mailto:${profile.email}`}>{profile.email}</a>
-          </motion.div>
+  return <Section className="hero hero-redesign" id="home" aria-labelledby="hero-title">
+    <div className="hero-aura hero-aura-one" /><div className="hero-aura hero-aura-two" />
+    <Container className="hero-layout">
+      <motion.div className="hero-left" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+        <motion.h1 className="hero-title" id="hero-title" variants={rise}><span>{profile.name}</span><strong>{profile.role}</strong></motion.h1>
+        <motion.p className="hero-lede" variants={rise}>I build responsive web applications, integrate reliable backend services, and create thoughtful digital experiences.</motion.p>
+        <motion.div className="hero-cta-row" variants={rise}>
+          <button className="hero-primary-cta" type="button" onClick={() => scrollToSection('projects')}>Explore My Work <HiArrowRight /></button>
+          <a className="hero-secondary-cta" href={profile.resumeUrl} download><HiArrowDownTray /> Download Resume</a>
         </motion.div>
-        <motion.div className="hero-visual" initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.7 }}>
-          <div className="profile-frame">
-            <div className="profile-placeholder" aria-label="Profile image placeholder">HV</div>
-            <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-            <div className="experience-chip"><strong>Full Stack</strong><span>Developer</span></div>
-          </div>
-          <div className="visual-note">Based in <strong>{profile.location}</strong></div>
-        </motion.div>
-      </Container>
-      <button className="scroll-cue" type="button" onClick={() => scrollToSection('about')} aria-label="Scroll to about section"><span>Scroll to discover</span><HiArrowDown /></button>
-    </Section>
-  );
+        <motion.div className="hero-stats" variants={rise} aria-label="Portfolio highlights">{stats.map((stat) => <div key={stat.label}><strong>{stat.value}<sup>+</sup></strong><span>{stat.label}</span></div>)}</motion.div>
+        <motion.div className="hero-link-row" variants={rise}>{socialLinks.map(({ label, icon: Icon, href }) => <a href={href} target="_blank" rel="noreferrer" key={label} aria-label={`${label} (opens in a new tab)`}><Icon /></a>)}<a className="hero-email" href={`mailto:${profile.email}`}>{profile.email}</a></motion.div>
+      </motion.div>
+      <motion.div className="hero-right" initial={{ opacity: 0, y: 20, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.7, delay: 0.5 }}>
+        <div className="hero-portrait-ring"><div className="hero-portrait"><img className="hero-profile-image" src={profileImage} alt={`${profile.name} profile`} /></div></div>
+      </motion.div>
+    </Container>
+  </Section>;
 }

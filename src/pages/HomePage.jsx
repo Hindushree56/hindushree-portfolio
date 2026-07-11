@@ -1,6 +1,8 @@
+import { lazy, Suspense } from 'react';
 import { Hero } from '../components/sections/Hero';
-import { AboutSection, ContactSection, EducationSection, ExperienceSection, ProjectsSection, PublicationsSection, SkillsSection } from '../components/sections/PortfolioSections';
+
+const PortfolioSections = lazy(() => import('../components/sections/PortfolioSections').then((module) => ({ default: module.PortfolioSections })));
 
 export function HomePage() {
-  return <><Hero /><AboutSection /><SkillsSection /><ExperienceSection /><ProjectsSection /><PublicationsSection /><EducationSection /><ContactSection /></>;
+  return <><Hero /><Suspense fallback={<div className="sections-loading" aria-label="Loading portfolio sections" />}><PortfolioSections /></Suspense></>;
 }

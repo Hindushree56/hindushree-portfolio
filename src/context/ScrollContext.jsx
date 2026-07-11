@@ -1,6 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
-
-const ScrollContext = createContext(null);
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { ScrollContext } from './scroll-context-value';
 
 export function ScrollProvider({ children }) {
   const sections = useRef(new Map());
@@ -26,10 +25,4 @@ export function ScrollProvider({ children }) {
   }, [scrollToSection]);
   const value = useMemo(() => ({ registerSection, scrollToSection }), [registerSection, scrollToSection]);
   return <ScrollContext.Provider value={value}>{children}</ScrollContext.Provider>;
-}
-
-export function useScrollNavigation() {
-  const context = useContext(ScrollContext);
-  if (!context) throw new Error('useScrollNavigation must be used inside ScrollProvider.');
-  return context;
 }

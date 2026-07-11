@@ -20,6 +20,7 @@ export const navigation = [
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -31,11 +32,12 @@ export const socialLinks = [
 ];
 
 export const skills = {
-  Languages: ['JavaScript', 'Python', 'SQL'],
-  Frontend: ['React.js', 'HTML5', 'CSS3', 'Bootstrap 5', 'AngularJS', 'jQuery'],
+  Languages: ['JavaScript', 'Python', 'Java', 'C', 'C++', 'SQL'],
+  Frontend: ['React.js', 'HTML5', 'CSS3', 'AngularJS'],
   Backend: ['Node.js', 'REST APIs', 'Database Design'],
   Databases: ['MySQL', 'Oracle', 'MongoDB'],
-  Tools: ['Git', 'GitHub', 'VS Code', 'Eclipse', 'Postman'],
+  'Developer Tools': ['Git', 'GitHub', 'VS Code', 'Eclipse', 'Postman'],
+  Design: ['Figma', 'Canva', 'Adobe XD'],
 };
 
 export const projects = [
