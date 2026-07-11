@@ -11,7 +11,7 @@ export const profile = {
   summary:
     'MCA graduate with internship experience in full-stack web development and an IEEE-published research paper in AI-based stress detection.',
   availability: 'Open to opportunities',
-  resumeUrl: '/Hindushree_HV_Resume.pdf',
+  resumeUrl: `${import.meta.env.BASE_URL}Hindushree_HV_Resume.pdf`,
 };
 
 export const navigation = [
